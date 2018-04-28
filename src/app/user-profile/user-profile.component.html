@@ -1,0 +1,29 @@
+<div class="container" *ngFor="let user of users" >
+  <div class="col-md-3">
+    <div class="profile-container text-center">
+      <div class="profile-header row">
+        <div class="col-md-12 col-sm-12 text-center">
+          <img src="http://bootdey.com/img/Content/user_1.jpg" alt="" class="header-avatar">
+        </div>
+        <div class="col-md-12 col-sm-12 profile-info">
+          <div class="row">
+            <div class="header-fullname">{{user.name}}</div>
+          </div>
+          <div class="row">
+            <a style="cursor: pointer;" (click)="onSentimentClick(user)" class="btn btn-success btn-lg" >
+              Do Sentiment <i class="fa-chart-bar"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-xs-12 profile-stats">
+          <div class="row">
+            <div class="stats-col">
+              <div class="stats-value pink">{{user.wallet.karma}}</div>
+              <div class="stats-title">KARMA</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
