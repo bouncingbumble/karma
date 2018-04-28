@@ -6,7 +6,11 @@ import { Wallet } from './wallet/wallet.model';
 export class UserService {
   private users: User[] = [
     new User(
-      'Juadan',
+      'Jordan',
+      new Wallet(0)
+    ),
+    new User(
+      'Juan',
       new Wallet(0)
     )
   ];

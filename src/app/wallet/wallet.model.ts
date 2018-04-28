@@ -1,4 +1,5 @@
 export class Wallet {
   constructor(
-    public karma: number){}
+    public karma: number
+  ){}
 }
