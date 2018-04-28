@@ -5,7 +5,10 @@ export class SentimentService {
 
   constructor() { }
 
-  doSentimentAnalysis(){
+  doSentimentAnalysis(imgUrl: string){
+    console.log(imgUrl);
+    //this is where all the sentiment analysis logic can go
+    //i'm assuming it will return a data object lolz
     return {
       firstNumber: 5,
       secondNumber: 3,
@@ -14,6 +17,7 @@ export class SentimentService {
   }
 
   convertSentimentAnalysisToKarma(data){
+    //this is where the algorithim to convert the sentiment data to karma will go
     return data.firstNumber + data.secondNumber + data.thirdNumber;
   }
 }

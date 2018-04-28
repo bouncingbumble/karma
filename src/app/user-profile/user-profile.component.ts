@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { SentimentService } from '../sentiment.service';
 import { TransactionService } from '../transaction.service';
 import { User } from '../user/user.model';
@@ -12,6 +12,7 @@ import { UserService } from '../user.service';
 export class UserProfileComponent implements OnInit {
 
   @Input() users: User[];
+  @ViewChild('img') img: ElementRef;
   constructor(private sentimentService: SentimentService, private transactionService: TransactionService, private userService: UserService) { }
 
   ngOnInit() {
@@ -19,7 +20,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   onSentimentClick(user: User){
-    var data = this.sentimentService.doSentimentAnalysis();
+    var data = this.sentimentService.doSentimentAnalysis(this.img.nativeElement.value);
     console.log(data);
     var karma: number = this.sentimentService.convertSentimentAnalysisToKarma(data);
     console.log(karma);

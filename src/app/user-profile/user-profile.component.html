@@ -10,6 +10,14 @@
             <div class="header-fullname">{{user.name}}</div>
           </div>
           <div class="row">
+            <label for="img"></label>
+            <input
+              type="text"
+              id="img"
+              class="form-control"
+              placeholder="Image link"
+              #img
+            >
             <a style="cursor: pointer;" (click)="onSentimentClick(user)" class="btn btn-success btn-lg" >
               Do Sentiment <i class="fa-chart-bar"></i>
             </a>
