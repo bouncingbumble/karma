@@ -8,10 +8,6 @@ export class UserService {
     new User(
       'Jordan',
       new Wallet(0)
-    ),
-    new User(
-      'Juan',
-      new Wallet(0)
     )
   ];
   constructor() { }

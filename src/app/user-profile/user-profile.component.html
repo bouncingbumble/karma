@@ -1,24 +1,11 @@
-<div *ngFor="let user of users" >
-  <div class="col-xs-6">
-    <div class="profile-container text-center">
-      <div class="profile-header row">
-        <div class="col-md-12 col-sm-12 text-center">
-          <app-webcam></app-webcam>
-          <button class="btn btn-lg btn-primary" (click)="grabImg64(user)"> generate post data </button>
-        </div>
-        <div class="col-md-12 col-sm-12 profile-info">
-          <div class="row">
-            <div class="header-fullname">{{user.name}}</div>
-          </div>
-        </div>
-        <div class="col-xs-12 profile-stats">
-          <div class="row">
-            <div class="stats-col">
-              <div class="stats-value pink">{{user.wallet.karma}}</div>
-              <div class="stats-title">KARMA</div>
-            </div>
-          </div>
-        </div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div *ngFor="let user of users">
+        <h1 class="number">{{user.wallet.karma}}</h1>
+        <h4 class="string">{{user.name}}'s KARMA</h4>
+        <app-webcam id="webcam"></app-webcam>
+        <button class="btn btn-lg btn-primary" (click)="grabImg64(user)"> generate post data </button>
       </div>
     </div>
   </div>

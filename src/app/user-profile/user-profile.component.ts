@@ -20,9 +20,9 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     this.users = this.userService.getUsers();
-    this.intervalVar = setInterval(() => {
-       this.grabImg64(this.users[0]);
-     }, 1000);
+    // this.intervalVar = setInterval(() => {
+    //    this.grabImg64(this.users[0]);
+    //  }, 1000);
   }
 
   grabImg64(user){

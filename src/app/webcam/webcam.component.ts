@@ -19,6 +19,10 @@ const template = `
   webcam:WebCamComponent//will be populated by <ack-webcam [(ref)]="webcam">
   base64
 
+  options = {
+    height: 500,
+    width: 500
+  }
   constructor(private sentimentService: SentimentService){}
   ngOnInit() {
 
