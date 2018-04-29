@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { WebCamComponent } from 'ack-angular-webcam';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { SentimentService } from '../sentiment.service';
 
 const template = `
 <ack-webcam
@@ -10,13 +10,8 @@ const template = `
   (catch)   = "onCamError($event)"
 ></ack-webcam>
 <br>
-<button class="btn btn-lg btn-primary" (click)="genPostData()"> generate post data </button>
 `
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json'
-  })
-};
+
 @Component({
   selector:'app-webcam',
   template:template
@@ -26,7 +21,7 @@ const httpOptions = {
 
   intervalVar;
 
-  constructor(private http: HttpClient){}
+  constructor(private sentimentService: SentimentService){}
   ngOnInit() {
     // this.intervalVar = setInterval(() => {
     //   this.genPostData();
@@ -39,26 +34,11 @@ const httpOptions = {
     }
   }
 
-  //get HTML5 FormData object and pretend to post to server
   genPostData(){
-    var base64 = this.webcam.getBase64()
-    .then( base=>this.base64=base)
-    .catch( e=>console.error(e) )
-    .then( base64=>this.postFormData(base64) )
-    .catch( e=>console.error(e) )
-    console.log(base64);
-  }
-
-  postFormData(base64){
-    const config = {
-      method:"post",
-      url:"http://www.aviorsciences.com/",
-      body: base64
-    }
-
-    console.log(config);
-
-    return this.http.post<Object>(config.url, config.body, httpOptions);
+    var base64img = this.webcam.getBase64();
+    console.log('64 generated from webcam pic:')
+    console.log(base64img);
+    return base64img;
   }
 
   onCamError(err){}

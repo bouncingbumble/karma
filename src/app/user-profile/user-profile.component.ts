@@ -1,8 +1,10 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, Output } from '@angular/core';
 import { SentimentService } from '../sentiment.service';
 import { TransactionService } from '../transaction.service';
 import { User } from '../user/user.model';
 import { UserService } from '../user.service';
+import { WebcamComponent } from '../webcam/webcam.component';
+import { WebCamComponent } from 'ack-angular-webcam';
 
 @Component({
   selector: 'app-user-profile',
@@ -10,20 +12,21 @@ import { UserService } from '../user.service';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-
+  @ViewChild(WebcamComponent) webcam: WebcamComponent;
   @Input() users: User[];
-  @ViewChild('img') img: ElementRef;
+  img64: Promise<string>;
   constructor(private sentimentService: SentimentService, private transactionService: TransactionService, private userService: UserService) { }
 
   ngOnInit() {
     this.users = this.userService.getUsers();
   }
 
-  onSentimentClick(user: User){
-    var data = this.sentimentService.doSentimentAnalysis(this.img.nativeElement.value);
-    console.log(data);
-    var karma: number = this.sentimentService.convertSentimentAnalysisToKarma(data);
-    console.log(karma);
+  grabImg64(user){
+    console.log('user is: ');
+    console.log(user);
+    this.img64 = this.webcam.genPostData();
+    var response = this.sentimentService.doSentimentAnalysis(this.img64, user);
+    var karma = this.sentimentService.convertSentimentAnalysisToKarma(response);
     this.transactionService.sendKarma(user, karma);
   }
 
