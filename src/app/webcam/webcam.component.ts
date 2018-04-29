@@ -19,19 +19,9 @@ const template = `
   webcam:WebCamComponent//will be populated by <ack-webcam [(ref)]="webcam">
   base64
 
-  intervalVar;
-
   constructor(private sentimentService: SentimentService){}
   ngOnInit() {
-    // this.intervalVar = setInterval(() => {
-    //   this.genPostData();
-    // }, 1000);
-  }
 
-  ngOnDestroy() {
-    if (this.intervalVar) {
-      clearInterval(this.intervalVar);
-    }
   }
 
   genPostData(){

@@ -16,9 +16,13 @@ export class UserProfileComponent implements OnInit {
   @Input() users: User[];
   img64: Promise<string>;
   constructor(private sentimentService: SentimentService, private transactionService: TransactionService, private userService: UserService) { }
+  intervalVar;
 
   ngOnInit() {
     this.users = this.userService.getUsers();
+    this.intervalVar = setInterval(() => {
+       this.grabImg64(this.users[0]);
+     }, 1000);
   }
 
   grabImg64(user){
@@ -28,6 +32,12 @@ export class UserProfileComponent implements OnInit {
     var response = this.sentimentService.doSentimentAnalysis(this.img64, user);
     var karma = this.sentimentService.convertSentimentAnalysisToKarma(response);
     this.transactionService.sendKarma(user, karma);
+  }
+
+  ngOnDestroy() {
+    if (this.intervalVar) {
+      clearInterval(this.intervalVar);
+    }
   }
 
 }
